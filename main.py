@@ -1,10 +1,13 @@
 import pyRDDLGym
 from pyRDDLGym.core.policy import RandomAgent
-
+import numpy as np
 # Paths to your domain and instance files
 base_path = './'  # Adjust the path accordingly
 domain_file = base_path + 'casino_mdp.rddl'
 instance_file = base_path + 'casino_instance.rddl'
+
+def cast_action_to_true_bool(action_dict):
+    return {key: np.bool(True) for key, value in action_dict.items()}
 
 # Create the environment
 myEnv = pyRDDLGym.make(domain=domain_file, instance=instance_file)
@@ -18,6 +21,7 @@ total_reward = 0
 state, _ = myEnv.reset()
 for step in range(myEnv.horizon):
     action = agent.sample_action()
+    action = cast_action_to_true_bool(action)
     next_state, reward, done, info, _ = myEnv.step(action)
     total_reward += reward
 
