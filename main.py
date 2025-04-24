@@ -10,26 +10,26 @@ instance_file = base_path + 'casino_instance.rddl'
 myEnv = pyRDDLGym.make(domain=domain_file, instance=instance_file)
 
 # Create a random agent
-# agent = RandomAgent(action_space=myEnv.action_space,
-#                     num_actions=myEnv.max_allowed_actions)
+agent = RandomAgent(action_space=myEnv.action_space,
+                    num_actions=myEnv.max_allowed_actions)
 
-# # Run the episode
-# total_reward = 0
-# state, _ = myEnv.reset()
-# for step in range(myEnv.horizon):
-#     action = agent.sample_action()
-#     next_state, reward, done, info, _ = myEnv.step(action)
-#     total_reward += reward
-#
-#     print(f'step       = {step}')
-#     print(f'state      = {state}')
-#     print(f'action     = {action}')
-#     print(f'next state = {next_state}')
-#     print(f'reward     = {reward}\n')
-#
-#     state = next_state
-#     if done:
-#         break
-#
-# print(f'Episode ended with total reward: {total_reward}')
-# myEnv.close()
+# Run the episode
+total_reward = 0
+state, _ = myEnv.reset()
+for step in range(myEnv.horizon):
+    action = agent.sample_action()
+    next_state, reward, done, info, _ = myEnv.step(action)
+    total_reward += reward
+
+    print(f'step       = {step}')
+    print(f'state      = {state}')
+    print(f'action     = {action}')
+    print(f'next state = {next_state}')
+    print(f'reward     = {reward}\n')
+
+    state = next_state
+    if done:
+        break
+
+print(f'Episode ended with total reward: {total_reward}')
+myEnv.close()

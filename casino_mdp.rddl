@@ -3,8 +3,8 @@ domain casino_mdp {
 
 
     pvariables {
-        S : { state-fluent, bool, default = true };
-        A : { action-fluent, bool, default = false };
+        S : { state-fluent, real, default = 1.0 };
+        A : { action-fluent, real, default = 0.0 };
     };
 
     cpfs {

@@ -1,3 +1,5 @@
+non-fluents aaa {
+}
 
 instance casino_instance {
     domain = casino_mdp;
@@ -13,4 +15,5 @@ instance casino_instance {
     horizon = 5;
     discount = 1.0;
 }
+
 
