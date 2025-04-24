@@ -1,0 +1,15 @@
+domain casino_mdp {
+    requirements = { reward-stochastic, cpf-stochastic };
+
+
+    pvariables {
+        S : { state-fluent, bool, default = true };
+        A : { action-fluent, bool, default = false };
+    };
+
+    cpfs {
+        S' = Bernoulli(0.5) * A + (1 - A) * S;
+    };
+
+    reward = A * 1;
+}

@@ -1,0 +1,16 @@
+
+instance casino_instance {
+    domain = casino_mdp;
+
+
+
+    init-state {
+        S = true;
+    };
+
+
+    max-nondef-actions = 1;
+    horizon = 5;
+    discount = 1.0;
+}
+
