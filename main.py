@@ -21,17 +21,15 @@ def jackplociy():
     for step in range(myEnv.horizon):
         next_state, reward, done, info, _ = myEnv.step(action)
         total_reward += reward
-
-        print(f'step       = {step}')
-        print(f'state      = {state}')
-        print(f'action     = {action}')
-        print(f'next state = {next_state}')
-        print(f'reward     = {reward}\n')
-        state = next_state
-
-        if action == {'action2':True, 'action1':False}:
-            action == {'action1': True, 'action2': False}
-
+        if action['action1']==True and action['action2']==True:
+            print('Two actions in parallel')
+            break
+        elif action['action2'] == True:
+            action['action2']= False
+            action['action1'] = True
+        elif action['action1'] == True:
+            action['action1'] = False
+            action['action2'] = True
         if done:
             print('---')
             break
@@ -82,7 +80,7 @@ myEnv = pyRDDLGym.make(domain=domain_file, instance=instance_file)
 # Run the episode
 total_reward = 0
 reward_vector = []
-for k in range(10):
+for k in range(1000000):
     reward_vector.append(jackplociy())
 
 plot_reward_histogram(reward_vector)
